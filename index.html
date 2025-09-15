@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twufit Dirshaye - Creative Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #9c27b0;
+            --secondary: #f5f5f5;
+            --dark: #2a2a2a;
+            --light: #ffffff;
+            --accent: #ff4081;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .navbar {
+            background-color: var(--light);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .nav-link {
+            color: var(--dark);
+            font-weight: 500;
+            margin: 0 10px;
+            transition: all 0.3s;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary);
+        }
+        
+        .hero {
+            height: 100vh;
+            color: white;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-carousel {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .carousel-inner, .carousel-item {
+            height: 100%;
+        }
+        
+        .carousel-item {
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .carousel-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+        }
+        
+        .carousel-item.fashion {
+            background-image: url('image/home.jpg');
+        }
+        
+        .carousel-item.photoeditor {
+            background-image: url('image/home4.jpg');
+        }
+        
+        .carousel-item.photographer {
+            background-image: url('image/home3.jpg');
+        }
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            max-width: 800px;
+            padding: 0 20px;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .btn-primary:hover {
+            background-color: #7b1fa2;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+        
+        .carousel-control-prev, .carousel-control-next {
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.7;
+            transition: all 0.3s;
+        }
+        
+        .carousel-control-prev {
+            left: 20px;
+        }
+        
+        .carousel-control-next {
+            right: 20px;
+        }
+        
+        .carousel-control-prev:hover, .carousel-control-next:hover {
+            opacity: 1;
+            background: var(--primary);
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-weight: 700;
+            color: var(--dark);
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        
+        .about-img {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.5s;
+        }
+        
+        .about-img:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .portfolio-filters {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .portfolio-filter {
+            padding: 8px 20px;
+            margin: 5px;
+            background: var(--secondary);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .portfolio-filter.active, .portfolio-filter:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .portfolio-item {
+            margin-bottom: 30px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+            transition: all 0.3s;
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .portfolio-item img {
+            width: 100%;
+            transition: all 0.5s;
+        }
+        
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(156, 39, 176, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.5s;
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: all 0.3s;
+            margin-bottom: 30px;
+            height: 100%;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            transition: all 0.3s;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .testimonial-author img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+        }
+        
+        .contact-form {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .form-control {
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border: 1px solid #eee;
+            transition: all 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 0.2rem rgba(156, 39, 176, 0.25);
+        }
+        
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .social-links {
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            font-size: 1.2rem;
+            margin: 0 10px;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        /* Stats section */
+        .stats-section {
+            background: linear-gradient(to right, #9c27b0, #673ab7);
+            color: white;
+            padding: 60px 0;
+        }
+        
+        .stat-item {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .stat-text {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+        
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Loading animation */
+        .loader-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: all 0.5s;
+        }
+        
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
+            .carousel-control-prev, .carousel-control-next {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .carousel-control-prev {
+                left: 10px;
+            }
+            
+            .carousel-control-next {
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading animation -->
+    <div class="loader-wrapper">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Twufit Dirshaye</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#portfolio">Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimonials">Testimonials</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Carousel -->
+    <header id="home" class="hero">
+        <div id="heroCarousel" class="carousel slide hero-carousel" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item fashion active">
+                    <div class="hero-content">
+                        <h1 data-aos="fade-down">Twufit Dirshaye</h1>
+                        <p data-aos="fade-down" data-aos-delay="200">Creative Fashion Designer & Stylist</p>
+                        <div data-aos="fade-up" data-aos-delay="400">
+                            <a href="#portfolio" class="btn btn-primary btn-lg">View My Work</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item photoeditor">
+                    <div class="hero-content">
+                        <h1 data-aos="fade-down">Twufit Dirshaye</h1>
+                        <p data-aos="fade-down" data-aos-delay="200">Professional Photo Editor & Retoucher</p>
+                        <div data-aos="fade-up" data-aos-delay="400">
+                            <a href="#portfolio" class="btn btn-primary btn-lg">View My Work</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item photographer">
+                    <div class="hero-content">
+                        <h1 data-aos="fade-down">Twufit Dirshaye</h1>
+                        <p data-aos="fade-down" data-aos-delay="200">Award-Winning Photographer</p>
+                        <div data-aos="fade-up" data-aos-delay="400">
+                            <a href="#portfolio" class="btn btn-primary btn-lg">View My Work</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>About Me</h2>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <div class="about-img">
+                        <img src="image/about.jpg" alt="Twufit Dirshaye" class="img-fluid">
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <h3>Creative Professional</h3>
+                    <p>With over 8 years of experience in the creative industry, I specialize in fashion design, photo editing, and photography. My work has been featured in major fashion shows across Paris, Milan, and New York.</p>
+                    <p>My creative philosophy centers on innovation and attention to detail, creating pieces and visuals that not only look beautiful but also tell a story.</p>
+                    <p>I draw inspiration from architecture, nature, and diverse cultures around the world, which reflects in my unique and versatile work.</p>
+                    <div class="mt-4">
+                        <a href="#contact" class="btn btn-primary me-3">Get In Touch</a>
+                        <a href="#!" class="btn btn-outline-primary">Download CV</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-6" data-aos="fade-up">
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="150">0</div>
+                        <div class="stat-text">Projects Completed</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="85">0</div>
+                        <div class="stat-text">Happy Clients</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="12">0</div>
+                        <div class="stat-text">Awards Received</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="8">0</div>
+                        <div class="stat-text">Years Experience</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="bg-light py-5">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>My Portfolio</h2>
+            </div>
+            
+            <div class="portfolio-filters" data-aos="fade-up">
+                <div class="portfolio-filter active">All</div>
+                <div class="portfolio-filter">Fashion Designs</div>
+                <div class="portfolio-filter">Photo Editing</div>
+                <div class="portfolio-filter">Photography</div>
+            </div>
+            
+            <div class="row">
+                <!-- Portfolio Item 1 -->
+                <div class="col-md-4" data-aos="fade-up">
+                    <div class="portfolio-item">
+                        <img src="image/image1.jpg" alt="Fashion Design">
+                        <div class="portfolio-overlay">
+                            <div class="text-center text-white">
+                                <h4>Ethereal Collection</h4>
+                                <p>Spring/Summer 2023</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Item 2 -->
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="portfolio-item">
+                        <img src="image/image2.jpg" alt="Fashion Design">
+                        <div class="portfolio-overlay">
+                            <div class="text-center text-white">
+                                <h4>Ethiopia</h4>
+                                <p>march 10/2017 </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Item 3 -->
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="portfolio-item">
+                        <img src="image/image3.jpg" alt="Fashion Sketch">
+                        <div class="portfolio-overlay">
+                            <div class="text-center text-white">
+                                <h4>Design Sketch</h4>
+                                <p>Hand-drawn illustration</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Item 4 -->
+                <div class="col-md-4" data-aos="fade-up">
+                    <div class="portfolio-item">
+                        <img src="image/image4.jpg" alt="Fashion Show">
+                        <div class="portfolio-overlay">
+                            <div class="text-center text-white">
+                                <h4>Paris Fashion Week</h4>
+                                <p>Runway Show 2023</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Item 5 -->
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="portfolio-item">
+                        <img src="image/image5.jpg" alt="Fashion Design">
+                        <div class="portfolio-overlay">
+                            <div class="text-center text-white">
+                                <h4>Oceanic Inspiration</h4>
+                                <p>Resort Collection 2023</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Item 6 -->
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="portfolio-item">
+                        <img src="image/image6.jpg" alt="Fashion Show">
+                        <div class="portfolio-overlay">
+                            <div class="text-center text-white">
+                                <h4>New York Runway</h4>
+                                <p>Fall Collection 2023</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+              <!-- Portfolio Item 2 -->
+                <div class="row colapse" id="demo">
+                <div class="col-md-4  " data-aos="fade-up" data-aos-delay="100">
+                    <div class="portfolio-item">
+                        <img src="image/image6.jpg" alt="Fashion Design">
+                        <div class="portfolio-overlay">
+                            <div class="text-center text-white">
+                                <h4>Ethiopia</h4>
+                                <p>march 10/2017 </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="col-md-4  " data-aos="fade-up" data-aos-delay="100">
+                    <div class="portfolio-item">
+                        <img src="image/image7.jpg" alt="Fashion Design">
+                        <div class="portfolio-overlay">
+                            <div class="text-center text-white">
+                                <h4>Ethiopia</h4>
+                                <p>march 10/2017 </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="col-md-4  " data-aos="fade-up" data-aos-delay="100">
+                    <div class="portfolio-item">
+                        <img src="image/image8.jpg" alt="Fashion Design">
+                        <div class="portfolio-overlay">
+                            <div class="text-center text-white">
+                                <h4>Ethiopia</h4>
+                                <p>march 10/2017 </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="col-md-4  " data-aos="fade-up" data-aos-delay="100">
+                    <div class="portfolio-item">
+                        <img src="image/image9.jpg" alt="Fashion Design">
+                        <div class="portfolio-overlay">
+                            <div class="text-center text-white">
+                                <h4>Ethiopia</h4>
+                                <p>march 10/2017 </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="col-md-4  " data-aos="fade-up" data-aos-delay="100">
+                    <div class="portfolio-item">
+                        <img src="image/image10.jpg" alt="Fashion Design">
+                        <div class="portfolio-overlay">
+                            <div class="text-center text-white">
+                                <h4>Ethiopia</h4>
+                                <p>march 10/2017 </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="col-md-4  " data-aos="fade-up" data-aos-delay="100">
+                    <div class="portfolio-item">
+                        <img src="image/image11.jpg" alt="Fashion Design">
+                        <div class="portfolio-overlay">
+                            <div class="text-center text-white">
+                                <h4>Ethiopia</h4>
+                                <p>march 10/2017 </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="col-md-4  " data-aos="fade-up" data-aos-delay="100">
+                    <div class="portfolio-item">
+                        <img src="image/image12.jpg" alt="Fashion Design">
+                        <div class="portfolio-overlay">
+                            <div class="text-center text-white">
+                                <h4>Ethiopia</h4>
+                                <p>march 10/2017 </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="col-md-4  " data-aos="fade-up" data-aos-delay="100">
+                    <div class="portfolio-item">
+                        <img src="image/image13.jpg" alt="Fashion Design">
+                        <div class="portfolio-overlay">
+                            <div class="text-center text-white">
+                                <h4>Ethiopia</h4>
+                                <p>march 10/2017 </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="col-md-4 " data-aos="fade-up" data-aos-delay="100">
+                    <div class="portfolio-item">
+                        <img src="image/image14.jpg" alt="Fashion Design">
+                        <div class="portfolio-overlay">
+                            <div class="text-center text-white">
+                                <h4>Ethiopia</h4>
+                                <p>march 10/2017 </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            <div class="text-center mt-5" data-aos="fade-up">
+                <a href="#demo" data-bs-toggle="collapse" class="btn btn-outline-primary">Load More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-5">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>My Services</h2>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-4" data-aos="fade-up">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-ruler-combined"></i>
+                        </div>
+                        <h4>Custom Clothing Design</h4>
+                        <p>Bespoke clothing tailored to your specific measurements, style preferences, and occasion needs.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-crop-alt"></i>
+                        </div>
+                        <h4>Photo Editing</h4>
+                        <p>Professional photo retouching, color grading, and creative editing to enhance your images.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <h4>Photography</h4>
+                        <p>Professional photography services for events, portraits, fashion, and commercial projects.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="bg-light py-5">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Client Testimonials</h2>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6" data-aos="fade-up">
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            <p>"Working with Twufit was an absolute pleasure. Her designs for my wedding dress exceeded all my expectations. She captured exactly what I wanted and added her incredible creative touch."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Client">
+                            <div>
+                                <h5>Sarah Williams</h5>
+                                <p>Bride</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            <p>"Twufit's collection for our fashion week was phenomenal. The attention to detail, innovative designs, and flawless execution made it one of the most talked-about shows of the season."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client">
+                            <div>
+                                <h5>Michael Rodriguez</h5>
+                                <p>Fashion Week Director</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            <p>"Twufit has an incredible eye for detail and color. Her editing transformed my photos into works of art that perfectly captured the emotion of our wedding day."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Client">
+                            <div>
+                                <h5>Jennifer Lee</h5>
+                                <p>Photography Client</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            <p>"As a photographer, Twufit has an incredible ability to capture the essence of her subjects. Her portfolio speaks volumes about her talent and creativity."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/men/76.jpg" alt="Client">
+                            <div>
+                                <h5>David Chen</h5>
+                                <p>Art Director</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Get In Touch</h2>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <div class="contact-form">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" placeholder="Your Name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="email" class="form-control" placeholder="Your Email" required>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Subject">
+                            <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
+                            <button type="submit" class="btn btn-primary w-100">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="mt-4 mt-lg-0">
+                        <h4>Contact Information</h4>
+                        <p>Feel free to reach out for collaborations, inquiries, or just to say hello!</p>
+                        
+                        <div class="my-4">
+                            <p><i class="fas fa-map-marker-alt me-2"></i> 123 Creative Street, Paris, France</p>
+                            <p><i class="fas fa-phone me-2"></i> +1 (234) 567-8901</p>
+                            <p><i class="fas fa-envelope me-2"></i> hello@twufitdirshaye.com</p>
+                        </div>
+                        
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-behance"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p>&copy; 2023 Twufit Dirshaye. All Rights Reserved.</p>
+            <p>Designed with passion for creativity and innovation</p>
+        </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS animation
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+        
+        // Remove loader when page is loaded
+        window.addEventListener('load', function() {
+            const loaderWrapper = document.querySelector('.loader-wrapper');
+            loaderWrapper.style.opacity = '0';
+            setTimeout(() => {
+                loaderWrapper.style.display = 'none';
+            }, 500);
+        });
+        
+        // Navbar background change on scroll
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                document.querySelector('.navbar').style.background = 'rgba(255, 255, 255, 0.95)';
+                document.querySelector('.navbar').style.padding = '10px 0';
+            } else {
+                document.querySelector('.navbar').style.background = 'var(--light)';
+                document.querySelector('.navbar').style.padding = '15px 0';
+            }
+            
+            // Show/hide back to top button
+            const backToTop = document.querySelector('.back-to-top');
+            if (window.scrollY > 300) {
+                backToTop.classList.add('active');
+            } else {
+                backToTop.classList.remove('active');
+            }
+        });
+        
+        // Back to top functionality
+        document.querySelector('.back-to-top').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Simple portfolio filter functionality
+        const filters = document.querySelectorAll('.portfolio-filter');
+        const items = document.querySelectorAll('.portfolio-item');
+        
+        filters.forEach(filter => {
+            filter.addEventListener('click', () => {
+                // Remove active class from all filters
+                filters.forEach(f => f.classList.remove('active'));
+                
+                // Add active class to clicked filter
+                filter.classList.add('active');
+                
+                // Here you would normally filter the portfolio items
+                // This is a simplified version for demonstration
+                console.log('Filter clicked: ' + filter.textContent);
+            });
+        });
+        
+        // Animated stats counter
+        const statNumbers = document.querySelectorAll('.stat-number');
+        let counted = false;
+        
+        function animateStats() {
+            const statsSection = document.querySelector('.stats-section');
+            const statsSectionPos = statsSection.getBoundingClientRect().top;
+            const screenPos = window.innerHeight / 1.3;
+            
+            if (statsSectionPos < screenPos && !counted) {
+                counted = true;
+                
+                statNumbers.forEach(stat => {
+                    const target = parseInt(stat.getAttribute('data-count'));
+                    const count = +stat.innerText;
+                    const increment = Math.ceil(target / 100);
+                    
+                    if (count < target) {
+                        stat.innerText = count + increment;
+                        setTimeout(() => animateStats(), 10);
+                    } else {
+                        stat.innerText = target;
+                    }
+                });
+            }
+        }
+        
+        window.addEventListener('scroll', animateStats);
+    </script>
+</body>
+</html>
